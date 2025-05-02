@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Izračun godina</title>
+</head>
+<body>
+    <form>
+        <label for="datum">Unesite datum rođenja (DD.MM.GGGG):</label>
+        <input type="text" id="datum" placeholder="DD.MM.GGGG" required>
+        <button type="submit" onclick="izracunajGodine()">Izračunaj</button>
+    </form>
+
+    <script>
+        function izracunajGodine() {
+            const unos = document.getElementById("datum").value.trim();
+            
+            // Provjera formata DD.MM.GGGG (npr. 01.01.2000)
+            if (unos.length !== 10 || unos[2] !== "." || unos[5] !== ".") {
+                alert("Unesite datum u formatu DD.MM.GGGG");
+                return;
+            }
+
+            const dan = parseInt(unos.slice(0, 2));
+            const mjesec = parseInt(unos.slice(3, 5));
+            const godina = parseInt(unos.slice(6, 10));
+
+            // Provjera valjanosti datuma
+            if (isNaN(dan) || isNaN(mjesec) || isNaN(godina) ||
+                dan < 1 || dan > 31 || mjesec < 1 || mjesec > 12 || godina < 1900 || godina > 2025) {
+                alert("Neispravan datum.");
+                return;
+            }
+
+            const datumRodjenja = new Date(godina, mjesec - 1, dan);
+            const danas = new Date();
+            let godine = danas.getFullYear() - datumRodjenja.getFullYear();
+            const mjeseci = danas.getMonth() - datumRodjenja.getMonth();
+
+            // Ako jos nije bio rodjendan oduzimamo 1
+            if (mjeseci < 0 || (mjeseci === 0 && danas.getDate() < datumRodjenja.getDate())) {
+                godine--;
+            }
+
+            alert(`Imate ${godine} godina.`);
+        }
+    </script>
+</body>
+</html>

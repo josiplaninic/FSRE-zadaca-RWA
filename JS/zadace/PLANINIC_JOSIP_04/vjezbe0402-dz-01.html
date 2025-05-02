@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Aritmetička i geometrijska sredina</title>
+</head>
+<body>
+    <h1>Aritmetička i geometrijska sredina</h1>
+    <div id="rezultat"></div>
+
+    <script>
+        const unos = prompt("Unesite brojeve odvojene zarezima (npr. 1, 4, 16):");
+        const brojevi = unos.split(",").map(broj => parseFloat(broj.trim())).filter(broj => !isNaN(broj) && broj > 0);
+
+        if (brojevi.length === 0) {
+            document.getElementById("rezultat").innerHTML = "Nema valjanih brojeva.";
+        } else {
+            const aritmetickaSredina = brojevi.reduce((zbroj, broj) => zbroj + broj, 0) / brojevi.length;
+
+
+            const geometrijskaSredina = Math.pow(brojevi.reduce((produkt, broj) => produkt * broj, 1), 1 / brojevi.length);
+
+
+            document.getElementById("rezultat").innerHTML = `
+                <p>Aritmetička sredina: ${aritmetickaSredina.toFixed(2)}</p>
+                <p>Geometrijska sredina: ${geometrijskaSredina.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

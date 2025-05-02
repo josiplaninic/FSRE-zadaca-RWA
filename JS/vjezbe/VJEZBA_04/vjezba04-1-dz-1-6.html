@@ -138,7 +138,7 @@
    document.write('Polje sortirano od najvećeg ka najmanjem: ' + sortedDescending + '<br/>');
 
    // c. Ispisati polje ali sortirano s vrijednostima od najmanjeg ka najvećem
-   var sortedAscending = polje.sort();
+   var sortedAscending = polje.sort(function(a, b) { return a - b; });
    document.write('Polje sortirano od najmanjeg ka najvećem: ' + sortedAscending + '<br/>');
 
    // d. U sortiranom polju iz c) ukloniti zadnji član polja

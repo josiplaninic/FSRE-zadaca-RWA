@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Online kalkulator</title>
+</head>
+<body>
+    <h1>Online kalkulator</h1>
+    <form>
+        <input type="number" id="broj1" placeholder="Prvi broj" step="any" required>
+        <input type="number" id="broj2" placeholder="Drugi broj (za potenciranje)" step="any">
+        <select id="operacija">
+            <option value="zbrajanje">Zbrajanje</option>
+            <option value="oduzimanje">Oduzimanje</option>
+            <option value="mnozenje">Množenje</option>
+            <option value="dijeljenje">Dijeljenje</option>
+            <option value="sinus">Sinus</option>
+            <option value="kosinus">Kosinus</option>
+            <option value="tangens">Tangens</option>
+            <option value="ln">Prirodni logaritam</option>
+            <option value="log10">Logaritam baze 10</option>
+            <option value="kvadrat">Kvadriranje</option>
+            <option value="kub">Kubiranje</option>
+            <option value="potenciranje">Potenciranje</option>
+        </select>
+        <button type="button" onclick="izracunaj()">Izračunaj</button>
+    </form>
+
+    <script>
+        function izracunaj() {
+            const broj1 = document.getElementById("broj1").value;
+            const broj2 = document.getElementById("broj2").value;
+            const operacija = document.getElementById("operacija").value;
+
+            if (broj1 === "" || isNaN(broj1)) {
+                alert("Unesite valjani prvi broj.");
+                return;
+            }
+            const num1 = parseFloat(broj1);
+
+            let num2 = 0;
+            if (["zbrajanje", "oduzimanje", "mnozenje", "dijeljenje", "potenciranje"].includes(operacija)) {
+                if (broj2 === "" || isNaN(broj2)) {
+                    alert("Unesite valjani drugi broj.");
+                    return;
+                }
+                num2 = parseFloat(broj2);
+            }
+
+            let rezultat;
+            switch (operacija) {
+                case "zbrajanje": rezultat = num1 + num2; break;
+                case "oduzimanje": rezultat = num1 - num2; break;
+                case "mnozenje": rezultat = num1 * num2; break;
+                case "dijeljenje":
+                    rezultat = num2 !== 0 ? num1 / num2 : "Dijeljenje s nulom!";
+                    break;
+                case "sinus": rezultat = Math.sin(num1); break;
+                case "kosinus": rezultat = Math.cos(num1); break;
+                case "tangens": rezultat = Math.tan(num1); break;
+                case "ln":
+                    rezultat = num1 > 0 ? Math.log(num1) : "Nevaljani unos za ln!";
+                    break;
+                case "log10":
+                    rezultat = num1 > 0 ? Math.log10(num1) : "Nevaljani unos za log10!";
+                    break;
+                case "kvadrat": rezultat = Math.pow(num1, 2); break;
+                case "kub": rezultat = Math.pow(num1, 3); break;
+                case "potenciranje": rezultat = Math.pow(num1, num2); break;
+                default: rezultat = "Nepoznata operacija";
+            }
+
+            alert(`Rezultat: ${rezultat}`);
+        }
+    </script>
+</body>
+</html>

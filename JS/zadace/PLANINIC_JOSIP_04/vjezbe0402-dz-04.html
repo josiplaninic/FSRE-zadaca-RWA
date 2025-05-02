@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ocjena u paragrafu</title>
+</head>
+<body>
+    <form>
+        <label for="ocjena">Unesite ocjenu (1-5):</label>
+        <input type="number" id="ocjena" min="1" max="5" required>
+        <button type="submit" onclick="prikaziOcjenu()">Prikaži</button>
+    </form>
+    <p id="rezultat"></p>
+
+    <script>
+        function prikaziOcjenu() {
+            const ocjena = parseInt(document.getElementById("ocjena").value);
+            const ocjene = {
+                1: "nedovoljan",
+                2: "dovoljan",
+                3: "dobar",
+                4: "vrlo dobar",
+                5: "odličan"
+            };
+            const rezultat = document.getElementById("rezultat");
+            if (ocjena >= 1 && ocjena <= 5) {
+                rezultat.textContent = `Ocjena: ${ocjene[ocjena]}`;
+            } else {
+                rezultat.textContent = "Unesite valjanu ocjenu (1-5).";
+            }
+        }
+    </script>
+</body>
+</html>

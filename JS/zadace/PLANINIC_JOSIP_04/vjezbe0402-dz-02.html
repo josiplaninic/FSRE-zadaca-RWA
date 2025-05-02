@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Promjena boje pozadine</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 100px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="promijeniPozadinu()">Promijeni pozadinu</button>
+    <p>Trenutna boja: <span id="prikazBoje">#FFFFFF</span></p>
+
+    <script>
+        function promijeniPozadinu() {
+            //generiramo nasumican broj izmedju 0 i 16777215 (0xFFFFFF), pretvaramo ga u hex te formatiramo string
+            let hex = Math.floor(Math.random() * 0xFFFFFF).toString(16);
+            let boja = '#' + hex.padStart(6, '0');
+
+            document.body.style.backgroundColor = boja;
+            document.getElementById("prikazBoje").textContent = boja;
+        }
+    </script>
+
+</body>
+</html>

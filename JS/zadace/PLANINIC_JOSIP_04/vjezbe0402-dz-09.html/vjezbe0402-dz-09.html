@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prekidač i žarulja</title>
+</head>
+<body>
+    <img id="zarulja" src="./zarulja_off_2.png" alt="Žarulja">
+    <img id="prekidac" src="./off-removebg-preview.png" alt="Prekidač" onclick="promijeniStanje()">
+
+    <script>
+        let ukljuceno = false;
+        function promijeniStanje() {
+            ukljuceno = !ukljuceno;
+            document.getElementById("zarulja").src = ukljuceno ? "./zarulja_on_2.png" : "./zarulja_off_2.png";
+            document.getElementById("prekidac").src = ukljuceno ? "./on-removebg-preview.png" : "./off-removebg-preview.png";
+        }
+    </script>
+</body>
+</html>
